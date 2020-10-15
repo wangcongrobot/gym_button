@@ -1,0 +1,55 @@
+Failure # 1 (occurred at 2020-10-13_11-33-05)
+Traceback (most recent call last):
+  File "/home/cong/miniconda3/lib/python3.7/site-packages/ray/tune/trial_runner.py", line 515, in _process_trial
+    result = self.trial_executor.fetch_result(trial)
+  File "/home/cong/miniconda3/lib/python3.7/site-packages/ray/tune/ray_trial_executor.py", line 488, in fetch_result
+    result = ray.get(trial_future[0], timeout=DEFAULT_GET_TIMEOUT)
+  File "/home/cong/miniconda3/lib/python3.7/site-packages/ray/worker.py", line 1428, in get
+    raise value.as_instanceof_cause()
+ray.exceptions.RayTaskError(NoSuchProcess): [36mray::A3C.train()[39m (pid=4188, ip=192.168.1.12)
+  File "/home/cong/miniconda3/lib/python3.7/site-packages/ray/thirdparty_files/psutil/_common.py", line 449, in wrapper
+    ret = self._cache[fun]
+AttributeError: _cache
+
+During handling of the above exception, another exception occurred:
+
+[36mray::A3C.train()[39m (pid=4188, ip=192.168.1.12)
+  File "/home/cong/miniconda3/lib/python3.7/site-packages/ray/thirdparty_files/psutil/_pslinux.py", line 1515, in wrapper
+    return fun(self, *args, **kwargs)
+  File "/home/cong/miniconda3/lib/python3.7/site-packages/ray/thirdparty_files/psutil/_common.py", line 452, in wrapper
+    return fun(self)
+  File "/home/cong/miniconda3/lib/python3.7/site-packages/ray/thirdparty_files/psutil/_pslinux.py", line 1557, in _parse_stat_file
+    with open_binary("%s/%s/stat" % (self._procfs_path, self.pid)) as f:
+  File "/home/cong/miniconda3/lib/python3.7/site-packages/ray/thirdparty_files/psutil/_common.py", line 713, in open_binary
+    return open(fname, "rb", **kwargs)
+FileNotFoundError: [Errno 2] No such file or directory: '/proc/713/stat'
+
+During handling of the above exception, another exception occurred:
+
+[36mray::A3C.train()[39m (pid=4188, ip=192.168.1.12)
+  File "/home/cong/miniconda3/lib/python3.7/site-packages/ray/thirdparty_files/psutil/__init__.py", line 371, in _init
+    self.create_time()
+  File "/home/cong/miniconda3/lib/python3.7/site-packages/ray/thirdparty_files/psutil/__init__.py", line 727, in create_time
+    self._create_time = self._proc.create_time()
+  File "/home/cong/miniconda3/lib/python3.7/site-packages/ray/thirdparty_files/psutil/_pslinux.py", line 1515, in wrapper
+    return fun(self, *args, **kwargs)
+  File "/home/cong/miniconda3/lib/python3.7/site-packages/ray/thirdparty_files/psutil/_pslinux.py", line 1727, in create_time
+    ctime = float(self._parse_stat_file()['create_time'])
+  File "/home/cong/miniconda3/lib/python3.7/site-packages/ray/thirdparty_files/psutil/_pslinux.py", line 1522, in wrapper
+    raise NoSuchProcess(self.pid, self._name)
+psutil.NoSuchProcess: psutil.NoSuchProcess process no longer exists (pid=713)
+
+During handling of the above exception, another exception occurred:
+
+[36mray::A3C.train()[39m (pid=4188, ip=192.168.1.12)
+  File "python/ray/_raylet.pyx", line 446, in ray._raylet.execute_task
+  File "/home/cong/miniconda3/lib/python3.7/site-packages/ray/memory_monitor.py", line 140, in raise_if_low_memory
+    self.error_threshold))
+  File "/home/cong/miniconda3/lib/python3.7/site-packages/ray/memory_monitor.py", line 41, in get_message
+    proc = psutil.Process(pid)
+  File "/home/cong/miniconda3/lib/python3.7/site-packages/ray/thirdparty_files/psutil/__init__.py", line 343, in __init__
+    self._init(pid)
+  File "/home/cong/miniconda3/lib/python3.7/site-packages/ray/thirdparty_files/psutil/__init__.py", line 384, in _init
+    raise NoSuchProcess(pid, None, msg)
+psutil.NoSuchProcess: psutil.NoSuchProcess no process found with pid 713
+

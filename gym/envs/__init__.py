@@ -332,6 +332,12 @@ register(
     max_episode_steps=1000,
 )
 
+register(
+    id='mjrl_dkitty_button-v0',
+    entry_point='gym.envs.mjrl:ButtonEnv',
+    max_episode_steps=100,
+)
+
 # Robotics
 # ----------------------------------------
 

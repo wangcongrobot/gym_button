@@ -1,0 +1,54 @@
+<!--
+ ~ Copyright 2019 The ROBEL Authors.
+ ~
+ ~ Licensed under the Apache License, Version 2.0 (the "License");
+ ~ you may not use this file except in compliance with the License.
+ ~ You may obtain a copy of the License at
+ ~
+ ~     http://www.apache.org/licenses/LICENSE-2.0
+ ~
+ ~ Unless required by applicable law or agreed to in writing, software
+ ~ distributed under the License is distributed on an "AS IS" BASIS,
+ ~ WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ ~ See the License for the specific language governing permissions and
+ ~ limitations under the License.
+ -->
+
+<?xml version="1.0"?>
+<mujoco model="dkitty-v2.1">
+  <include file="../scenes/basic_scene.xml"/>
+  <include file="assets/dependenciesA_xh-v2.1.xml"/>
+
+  <compiler meshdir="."/>
+
+  <worldbody>
+
+    <body name="A:kitty_frame" pos="0.2 0 0.3">
+      <camera name="A:trackingZ" pos="0 0 3" zaxis="0 0 3" mode="trackcom"/>
+      <camera name="A:trackingY" pos="1.5 1.5 .35" xyaxes="-.7 1 0 0 -.3 1" mode="trackcom"/>
+
+      <joint name="A:Tx" pos="0 0 0" axis="1 0 0" limited="true" type="slide" range="-5 5"/>
+      <joint name="A:Ty" pos="0 0 0" axis="0 1 0" limited="true" type="slide" range="-5 5"/>
+      <joint name="A:Tz" pos="0 0 0" axis="0 0 1" limited="true" type="slide" range="-2 2"/>
+      <joint name="A:Rx" pos="0 0 0" axis="1 0 0" limited="true" range="-1.57 1.57"/>
+      <joint name="A:Ry" pos="0 0 0" axis="0 1 0" limited="true" range="-1.57 1.57"/>
+      <joint name="A:Rz" pos="0 0 0" axis="0 0 1" limited="true" range="-1.57 1.57"/>
+
+      <include file="assets/chainA_xh-v2.1.xml"/>
+    </body>
+
+    <geom class="table_plastic" name="wall" type="box" size=".4 .01 .5" pos="0.2 0.21 0" rgba=".5 .5 .5 1" material="MatPlane"/>
+    <geom type="mesh" pos="0.3 0.2 0.3" rgba="1 1 1 1" mesh="base_link"  euler="1.57 0 0"/>
+    <body name="button" pos="0.3 0.2 0.3" quat="0.753912 0.656976 0 0" euler="1.57 0 0">
+        <inertial pos="-5.5045e-06 0.0023925 -0.00086877" quat="0.696349 -0.122872 0.122872 0.696349" mass="0.0017883" diaginertia="1.65003e-07 1.1596e-07 1.00437e-07" />
+        <joint name="sw_btn" pos="0 0 0" axis="1 0 0" />
+        <geom type="mesh" rgba="1 1 1 1" mesh="button" />
+    </body>
+
+
+  </worldbody>
+</mujoco>
+
+<!--
+
+ -->
