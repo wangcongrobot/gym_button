@@ -2,20 +2,12 @@ import gym
 import numpy as np
 import time
 
-# import gym.envs.robotics.mjrl.envs
-from mjrl.utils.gym_env import GymEnv
-
 mode = 'human'
 #mode = 'rgb_array'
 
-# env = gym.make("RexROVURReach-v1")
-# env = gym.make("RexROVURPipeMonitor-v1")
-# env = gym.make("mjrl_rexrov2_ur3_pick-v0")
-# env = GymEnv("mjrl_rexrov2_ur3_pick-v0")
-env = GymEnv("mjrl_dkitty_button-v0")
-# env = GymEnv("mjrl_rexrov2_ur3_insertion-v0")
-# env = GymEnv("")
-# env = gym.make("mjrl_floating_peg_insertion-v0")
+env = gym.make("mjrl_dkitty_button-v0")
+# env = gym.make("mjrl_dkitty_switch-v0")
+
 
 # print("action space high: ", env.action_space.high)
 # print("action space low: ", env.action_space.low)

@@ -338,6 +338,12 @@ register(
     max_episode_steps=100,
 )
 
+register(
+    id='mjrl_dkitty_switch-v0',
+    entry_point='gym.envs.mjrl:SwitchEnv',
+    max_episode_steps=100,
+)
+
 # Robotics
 # ----------------------------------------
 

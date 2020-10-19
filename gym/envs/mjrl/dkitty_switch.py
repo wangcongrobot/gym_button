@@ -4,7 +4,7 @@ from gym.envs.mjrl import mujoco_env
 from mujoco_py import MjViewer
 import random
 
-class ButtonEnv(mujoco_env.MujocoEnv, utils.EzPickle):
+class SwitchEnv(mujoco_env.MujocoEnv, utils.EzPickle):
     def __init__(self):
         self.button_on = True
         self.peg_sid = -2
@@ -17,10 +17,10 @@ class ButtonEnv(mujoco_env.MujocoEnv, utils.EzPickle):
         self._is_success = False
         self.last_action = None
         self.last_state = None
-        mujoco_env.MujocoEnv.__init__(self, 'dkitty/mjmodel.xml', 4)
+        mujoco_env.MujocoEnv.__init__(self, 'dkitty/switch.xml', 4)
         utils.EzPickle.__init__(self)
         self.peg_sid = self.model.site_name2id("A:FLfoot")
-        self.target_sid = self.model.site_name2id("button_up")
+        self.target_sid = self.model.site_name2id("button_tip")
         self.init_body_pos = self.model.body_pos.copy()
 
     def step(self, a):
@@ -41,10 +41,8 @@ class ButtonEnv(mujoco_env.MujocoEnv, utils.EzPickle):
             self.data.qpos.flat,
             self.data.qvel.flat,
             self.sim.data.get_site_xpos('A:FLfoot'),
-            self.sim.data.get_site_xpos('A:FLfoot') - self.sim.data.get_site_xpos('button_up'),
-            self.sim.data.get_site_xpos('A:FLfoot') - self.sim.data.get_site_xpos('button_down'),
-            self.sim.data.get_site_xpos('button_up'),
-            self.sim.data.get_site_xpos('button_down'),
+            self.sim.data.get_site_xpos('A:FLfoot') - self.sim.data.get_site_xpos('button_tip'),
+            self.sim.data.get_site_xpos('button_tip'),
             [self.button_state],
             [self._is_success],
         ])
@@ -66,30 +64,28 @@ class ButtonEnv(mujoco_env.MujocoEnv, utils.EzPickle):
             print("action_jerky_penalty: ", action_jerky_penalty)
         
         hand = self.sim.data.get_site_xpos('A:FLfoot')
-        button_up_site = self.sim.data.get_site_xpos('button_up')
-        button_down_site = self.sim.data.get_site_xpos('button_down')
+        button_tip_site = self.sim.data.get_site_xpos('button_tip')
 
         r_time_penalty = -0.0 * self.timestep
-        print("button_up_site: ", button_up_site)
-        print("button_down_site: ", button_down_site)
+        print("button_tip_site: ", button_tip_site)
         print("hand: ", hand)
 
-        if self.button_state == 0: # on, press the button_down
+        if self.button_state == 0: # on, press the button_tip: [0.4        0.34530444 0.36511974]
             print("button on")
-            r_reach = - np.linalg.norm(hand - button_down_site) # + np.exp(-np.linalg.norm(hand - button_down_site) ** 2 / 0.01)
-            print("dist: ", np.linalg.norm(hand - button_down_site))
-            if np.linalg.norm(hand - button_down_site) < 0.05: # 0.374 turn to off
+            r_reach = - np.linalg.norm(hand - button_tip_site) # + np.exp(-np.linalg.norm(hand - button_tip_site) ** 2 / 0.01)
+            print("dist: ", np.linalg.norm(hand - button_tip_site))
+            if np.linalg.norm(hand - button_tip_site) < 0.05: # 0.374 turn to off
                 r_reach += 0.1
-                if button_up_site[1] < 0.38:
+                if button_tip_site[2] < 0.32: # button off
                     r_bonus = 5.0
                     self._is_success = True
-        if self.button_state == 1: # off, press the button_up
+        if self.button_state == 1: # off, press the button_tip: [0.4        0.34089567 0.30295045]
             print("button off")
-            r_reach = - np.linalg.norm(hand - button_up_site) # + np.exp(-np.linalg.norm(hand - button_up_site) ** 2 / 0.01)
-            print("dist: ", np.linalg.norm(hand - button_up_site))     
-            if np.linalg.norm(hand - button_up_site) < 0.05: # 0.397 turn to on
+            r_reach = - np.linalg.norm(hand - button_tip_site) # + np.exp(-np.linalg.norm(hand - button_tip_site) ** 2 / 0.01)
+            print("dist: ", np.linalg.norm(hand - button_tip_site))     
+            if np.linalg.norm(hand - button_tip_site) < 0.05: # 0.397 turn to on
                 r_reach += 0.1
-                if button_up_site[1] > 0.39:
+                if button_tip_site[2] > 0.35: # button on
                     self._is_success = True
                     r_bonus = 5.0
         r_total = r_reach + r_bonus + r_time_penalty + action_jerky_penalty + opposite_penalty
@@ -111,10 +107,10 @@ class ButtonEnv(mujoco_env.MujocoEnv, utils.EzPickle):
     def target_reset(self):
         # choose button initial state randomly
         try:
-            self.data.qpos[-1] = random.choice([0.4,1.7])
-            if self.data.qpos[-1] == 0.4: # on
+            self.data.qpos[-1] = random.choice([1.,2.])
+            if self.data.qpos[-1] == 1.: # on
                 self.button_state = 0
-            if self.data.qpos[-1] == 1.7: # off
+            if self.data.qpos[-1] == 2.: # off
                 self.button_state = 1
             self.sim.forward()
         except:

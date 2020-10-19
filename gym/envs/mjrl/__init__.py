@@ -5,3 +5,4 @@ from gym.envs.mujoco.mujoco_env import MujocoEnv
 
 
 from gym.envs.mjrl.dkitty_button import ButtonEnv
+from gym.envs.mjrl.dkitty_switch import SwitchEnv
