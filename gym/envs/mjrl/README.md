@@ -25,8 +25,14 @@ rllib train --run DDPG --env mjrl_dkitty_button-v0 --checkpoint-freq 10 --config
 rllib train --run TD3 --env mjrl_dkitty_button-v0 --checkpoint-freq 10 --config '{"num_workers": 25, "ignore_worker_failures": true}'
 ```
 
-## Results
+## Button Training Results
 
 ![dkitty_button](assets/docs/dkitty_button.gif)
 
 ![](docs/dkitty_button_training_results.png)
+
+
+## Switch Training Results
+
+![dkitty_switch](docs/dkitty_switch.gif)
+![](docs/dkitty_switch.png)
