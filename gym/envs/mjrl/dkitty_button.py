@@ -17,7 +17,7 @@ class ButtonEnv(mujoco_env.MujocoEnv, utils.EzPickle):
         self._is_success = False
         self.last_action = None
         self.last_state = None
-        mujoco_env.MujocoEnv.__init__(self, 'dkitty/mjmodel.xml', 4)
+        mujoco_env.MujocoEnv.__init__(self, 'dkitty/mjmodel.xml', 1)
         utils.EzPickle.__init__(self)
         self.peg_sid = self.model.site_name2id("A:FLfoot")
         self.target_sid = self.model.site_name2id("button_up")
@@ -57,22 +57,22 @@ class ButtonEnv(mujoco_env.MujocoEnv, utils.EzPickle):
         opposite_penalty = 0
         r_total = 0
         if self.last_action is not None:
-            print("last_action: ", self.last_action)
-            print("current_action: ", act)
+            # print("last_action: ", self.last_action)
+            # print("current_action: ", act)
             error = act - self.last_action
             if max(np.abs(error)) > 0.1:
                 action_jerky_penalty = -0.1 * max(np.abs(error))
-            print("error: ", error)
-            print("action_jerky_penalty: ", action_jerky_penalty)
+            # print("error: ", error)
+            # print("action_jerky_penalty: ", action_jerky_penalty)
         
         hand = self.sim.data.get_site_xpos('A:FLfoot')
         button_up_site = self.sim.data.get_site_xpos('button_up')
         button_down_site = self.sim.data.get_site_xpos('button_down')
 
         r_time_penalty = -0.0 * self.timestep
-        print("button_up_site: ", button_up_site)
-        print("button_down_site: ", button_down_site)
-        print("hand: ", hand)
+        # print("button_up_site: ", button_up_site)
+        # print("button_down_site: ", button_down_site)
+        # print("hand: ", hand)
 
         if self.button_state == 0: # on, press the button_down
             print("button on")
@@ -94,11 +94,11 @@ class ButtonEnv(mujoco_env.MujocoEnv, utils.EzPickle):
                     r_bonus = 5.0
         r_total = r_reach + r_bonus + r_time_penalty + action_jerky_penalty + opposite_penalty
                    
-        print("r_reach: ", r_reach)
-        print("r_bonus: ", r_bonus)
-        print("r_time_penalty: ", r_time_penalty)  
-        print("opposite_penalty: ", opposite_penalty)  
-        print("r_total: ", r_total)                
+        # print("r_reach: ", r_reach)
+        # print("r_bonus: ", r_bonus)
+        # print("r_time_penalty: ", r_time_penalty)  
+        # print("opposite_penalty: ", opposite_penalty)  
+        # print("r_total: ", r_total)                
         return r_total
 
     # --------------------------------
@@ -117,6 +117,11 @@ class ButtonEnv(mujoco_env.MujocoEnv, utils.EzPickle):
             if self.data.qpos[-1] == 1.7: # off
                 self.button_state = 1
             self.sim.forward()
+            self.data.qpos[0] = np.random.uniform(-1.0, 1.0)
+            self.data.qpos[1] = np.random.uniform(-1.0, 1.0)
+            self.data.qpos[2] = np.random.uniform(-1.0, 1.0)
+            for _ in range(20):
+                self.sim.step()
         except:
             pass
 

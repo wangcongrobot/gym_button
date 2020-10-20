@@ -115,7 +115,7 @@
         <light pos="-1 -1 1" dir="0.57735 0.57735 -0.57735" directional="true" diffuse="0.3 0.3 0.3" />
         <light pos="1 -1 1" dir="-0.57735 0.57735 -0.57735" directional="true" diffuse="0.3 0.3 0.3" />
         <light pos="0 1 1" dir="0 -0.707107 -0.707107" directional="true" diffuse="0.3 0.3 0.3" />
-        <body name="A:kitty_frame" pos="0.28 0.1 0.205">
+        <body name="A:kitty_frame" pos="0.28 0.08 0.205">
             <inertial pos="0.2 0 0.3" mass="0" diaginertia="0 0 0" />
             <!-- <joint name="A:Tx" pos="0 0 0" axis="1 0 0" type="slide" limited="true" range="-5 5" />
             <joint name="A:Ty" pos="0 0 0" axis="0 1 0" type="slide" limited="true" range="-5 5" />
@@ -309,22 +309,6 @@
             <geom class="viz_metal_grey" pos="-0.01 -0.01 -0.075" type="mesh" rgba="1 1 1 1" mesh="button" />
             <site name="button_tip" pos="0 0.0 0.065" size="0.005" rgba="1 1 0.3 1" />
         </body>
-
-        <!-- <body name="button1" pos="0 0.28 0.52">
-            <inertial pos="0 0 0" mass="0.1" diaginertia="100000 100000 100000"/>
-            <geom name="button1" fromto="0 -0.03 0 0 0.03 0" rgba="0.3 1 0.3 1" size="0.03 0.06" type="cylinder" solref="0.02 1" conaffinity="1" contype="1" group="1"/>
-            <joint type="slide" range="0 0.05" axis="0 1 0" name="goal_slidey" pos="0 0 0" damping="1.0" limited="true"/>
-            <site name="buttonStart" pos="0 -0.03 0" size="0.005" rgba="0 0.8 0 1"/>
-        </body>
-
-        <body name="box" pos="0 0.4 0.45">
-            <geom rgba="0.3 0.3 1 1" type="box" contype="1" size="0.1 0.1 0.05" name="box_bottom" conaffinity="1" pos="0 0 0" mass="1000" solimp="0.99 0.99 0.01" solref="0.01 1"/>
-            <geom rgba="0.3 0.3 1 1" type="box" contype="1" size="0.1 0.1 0.05" name="box_top" conaffinity="1" pos="0 0 0.16" mass="1000" solimp="0.99 0.99 0.01" solref="0.01 1"/>
-            <geom rgba="0.3 0.3 1 1" type="box" contype="1" size="0.035 0.1 0.03" name="box_left" conaffinity="1" pos="0.065 0 0.08" mass="1000" solimp="0.99 0.99 0.01" solref="0.01 1"/>
-            <geom rgba="0.3 0.3 1 1" type="box" contype="1" size="0.035 0.1 0.03" name="box_right" conaffinity="1" pos="-0.065 0 0.08" mass="1000" solimp="0.99 0.99 0.01" solref="0.01 1"/>
-            <site name="hole" pos="0 -0.1 0.05" size="0.005" rgba="0 0.8 0 1"/>
-            <joint type="slide" range="-0.2 0." axis="0 1 0" name="goal_slidey" pos="0 0 0" damping="1.0"/>
-        </body> -->
 
     </worldbody>
     <actuator>
