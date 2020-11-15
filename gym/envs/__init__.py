@@ -339,8 +339,20 @@ register(
 )
 
 register(
+    id='mjrl_dkitty_button_random-v0',
+    entry_point='gym.envs.mjrl:ButtonRandomEnv',
+    max_episode_steps=100,
+)
+
+register(
     id='mjrl_dkitty_switch-v0',
     entry_point='gym.envs.mjrl:SwitchEnv',
+    max_episode_steps=100,
+)
+
+register(
+    id='mjrl_dkitty_switch_random-v0',
+    entry_point='gym.envs.mjrl:SwitchRandomEnv',
     max_episode_steps=100,
 )
 

@@ -1,5 +1,0 @@
-{
-  "env": "mjrl_dkitty_button-v0",
-  "ignore_worker_failures": true,
-  "num_workers": 25
-}

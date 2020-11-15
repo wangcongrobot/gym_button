@@ -1,0 +1,370 @@
+<mujoco model="dkitty-v2.1">
+    <compiler angle="radian" meshdir="./" />
+    <option timestep="0.01" />
+	<!-- <option timestep="0.01"
+			iterations="10"
+			tolerance="1e-10"
+			impratio="10"
+			gravity="0 0 -0."
+			solver="PGS"
+			cone="elliptic" />    
+    <size njmax="4000" nconmax="4000" /> -->
+    <visual>
+        <quality shadowsize="4096" />
+        <map force="0.1" fogstart="1.5" fogend="5" znear="0.1" />
+    </visual>
+    <default class="main">
+        <default class="table">
+            <joint limited="true" armature="0.001" damping="1" />
+            <geom condim="4" group="1" solimp="0.8 0.9 0.01 0.5 2" margin="0.001" />
+            <general ctrllimited="true" ctrlrange="-10 10" biastype="affine" gainprm="5 0 0 0 0 0 0 0 0 0" biasprm="0 -5 0 0 0 0 0 0 0 0" />
+            <default class="table_plastic">
+                <geom type="mesh" contype="0" conaffinity="0" material="plastic" />
+            </default>
+        </default>
+        <default class="dkitty">
+            <joint limited="true" armature="0.001" damping="1" />
+            <geom condim="4" group="1" solimp="0.8 0.9 0.01 0.5 2" margin="0.001" />
+            <general ctrllimited="true" ctrlrange="-1.57 1.57" biastype="affine" gainprm="5 0 0 0 0 0 0 0 0 0" biasprm="0 -5 0 0 0 0 0 0 0 0" />
+            <default class="viz_metal_black">
+                <geom type="mesh" contype="0" conaffinity="0" material="metal_black" />
+            </default>
+            <default class="viz_metal_grey">
+                <geom type="mesh" contype="0" conaffinity="0" material="metal_grey" />
+            </default>
+            <default class="viz_plastic">
+                <geom type="mesh" contype="0" conaffinity="0" material="plastic" />
+            </default>
+            <default class="collision">
+                <geom group="4" rgba="0.3 0.3 1 0.5" />
+                <!-- <geom group="4" contype='1' conaffinity='1' margin="0.001" solimp="0.99 0.99 0.01" solref="0.01 1" condim="4" rgba="0.3 0.3 1 0.5"/>  -->
+
+                <site group="4" />
+            </default>
+        </default>
+    </default>
+        <!-- all geom params -->
+        <!-- <geom contype='1' conaffinity='1' margin="0.001" solimp="0.99 0.99 0.01" solref="0.01 1" condim="4" />  -->
+        <!-- friction="1. 0.1 0.1" /> -->
+        <!-- <joint armature="0.01" damping=".1"/> -->
+
+        <!-- Default Joints position control-->
+        <!-- <default class="UR5">
+            <joint damping='200' />
+        </default>
+        <default class="UR5e">
+            <joint damping='100'/>
+        </default> -->
+        <!-- sub=20 -->
+        <!-- <default class="UR5">
+            <joint damping='500' />
+        </default>
+        <default class="UR5e">
+            <joint damping='100'/>
+        </default>         -->
+        <!-- Joint velocity control -->
+        <!-- <default class="UR5">
+            <joint damping='1' />
+        </default>
+        <default class="UR5e">
+            <joint damping='0.5'/>
+        </default> -->
+
+        <!-- <default class="GRIPPER">
+            <joint damping='5'/>
+            <geom rgba="0.424 0.424 0.424 1.0" contype='1' conaffinity='1' margin="0.001" solimp="0.99 0.99 0.01" solref="0.01 1" condim="4" type='mesh'/>
+        </default>     -->
+    <asset>
+        <texture type="skybox" name="skybox" builtin="gradient" mark="random" rgb1="0.08 0.09 0.1" rgb2="0 0 0" markrgb="0.8 0.8 0.8" width="800" height="4800" />
+        <texture type="2d" name="texplane" file="../scenes/textures/white_marble_tile2.png" />
+        <material name="MatPlane" texture="texplane" texuniform="true" texrepeat="4 4" reflectance="0.05" />
+        <material name="metal_black" specular="1" shininess="1" rgba="0.25 0.25 0.25 1" />
+        <material name="metal_grey" specular="0.8" shininess="0.8" rgba="0.5 0.5 0.5 1" />
+        <material name="plastic" specular="0.3" shininess="0" />
+        <material name="greenish" specular="0" shininess="0" rgba="0.3 1 0.3 1" />
+        <mesh name="bulkhead" file="../dkitty/meshes/bulkhead.stl" />
+        <mesh name="D_kitty_plates_V2" file="../dkitty/meshes/D_kitty_plates_V2.stl" />
+        <mesh name="bulkhead_low_poly" file="../dkitty/meshes/bulkhead_low_poly.stl" />
+        <mesh name="bulkhead_low_poly1" file="../dkitty/meshes/bulkhead_low_poly1.stl" />
+        <mesh name="bulkhead_low_poly2" file="../dkitty/meshes/bulkhead_low_poly2.stl" />
+        <mesh name="bulkhead_low_poly3" file="../dkitty/meshes/bulkhead_low_poly3.stl" />
+        <mesh name="bulkhead_low_poly4" file="../dkitty/meshes/bulkhead_low_poly4.stl" />
+        <mesh name="bulkhead_low_poly5" file="../dkitty/meshes/bulkhead_low_poly5.stl" />
+        <mesh name="fr12_h103_3" file="../dkitty/meshes/fr12_h103_3.stl" />
+        <mesh name="screws" file="../dkitty/meshes/screws.stl" />
+        <mesh name="x430_dkitty_2" file="../dkitty/meshes/x430_dkitty_2.stl" />
+        <mesh name="xh_clamping_small" file="../dkitty/meshes/xh_clamping_small.stl" />
+        <mesh name="xh_finger_tip" file="../dkitty/meshes/xh_finger_tip.stl" />
+        <mesh name="Rocker_switch" file="../dkitty/meshes/Rocker_Switch.stl" scale="2.0 2.0 2.0"/>
+        <mesh name="base_link" file="../dkitty/meshes/base_link.STL" scale="2.0 2.0 2.0"/>
+        <mesh name="button" file="../dkitty/meshes/button.STL" scale="2.0 2.0 2.0"/>
+    </asset>
+    <worldbody>
+        <geom name="floor" size="5 5 0.1" type="plane" material="MatPlane" />
+        <!-- add wall here -->
+        <body name="wall">
+            <geom class="collision" size="0.4 0.01 0.5" pos="0.2 0.41 0" type="box" material="MatPlane" />
+            <geom class="table_plastic" size="0.4 0.01 0.5" pos="0.2 0.41 0" type="box" material="MatPlane" />
+        </body>
+
+        <!-- add button base -->
+        <geom class="viz_metal_grey" pos="0.4 0.4 0.35" quat="0.707388 0.706825 0 0" type="mesh" rgba="1 0 1 1" mesh="base_link" />
+
+        <site name="xaxis" pos="0.5 0 0" quat="0.707388 0 0.706825 0" size="0.005 0.5" group="3" type="capsule" rgba="1 0 0 0.25" />
+        <site name="yaxis" pos="0 0.5 0" quat="0.707388 0.706825 0 0" size="0.005 0.5" group="3" type="capsule" rgba="0 1 0 0.25" />
+        <light pos="-1 -1 1" dir="0.57735 0.57735 -0.57735" directional="true" diffuse="0.3 0.3 0.3" />
+        <light pos="1 -1 1" dir="-0.57735 0.57735 -0.57735" directional="true" diffuse="0.3 0.3 0.3" />
+        <light pos="0 1 1" dir="0 -0.707107 -0.707107" directional="true" diffuse="0.3 0.3 0.3" />
+        <body name="A:kitty_frame" pos="0.28 0.08 0.205">
+            <inertial pos="0.2 0 0.3" mass="0" diaginertia="0 0 0" />
+            <!-- <joint name="A:Tx" pos="0 0 0" axis="1 0 0" type="slide" limited="true" range="-5 5" />
+            <joint name="A:Ty" pos="0 0 0" axis="0 1 0" type="slide" limited="true" range="-5 5" />
+            <joint name="A:Tz" pos="0 0 0" axis="0 0 1" type="slide" limited="true" range="-2 2" />
+            <joint name="A:Rx" pos="0 0 0" axis="1 0 0" limited="true" range="-1.57 1.57" />
+            <joint name="A:Ry" pos="0 0 0" axis="0 1 0" limited="true" range="-1.57 1.57" />
+            <joint name="A:Rz" pos="0 0 0" axis="0 0 1" limited="true" range="-1.57 1.57" /> -->
+
+            <!-- <joint name="wrist_x_slide_joint" type="slide" pos="0 0 0" axis="1 0 0" limited="true" range="-3.0 3.0" /> -->
+            <joint name="wrist_y_slide_joint" type="slide" pos="0 0 0" axis="0 1 0" limited="true" range="-0.1 0.1" />
+            <!-- <joint name="wrist_z_slide_joint" type="slide" pos="0 0 0" axis="0 0 1" limited="true" range="-3.0 3.0" /> -->
+            <joint name="wrist_z_hinge_joint" type="hinge" pos="0 0 0" axis="0 0 1" limited="true" range="-1.0 1.0" />
+            <!-- <joint name="wrist_y_hinge_joint" type="hinge" pos="0 0 0" axis="0 1 0" limited="true" range="-1.57 1.57" /> -->
+            <!-- <joint name="wrist_x_hinge_joint" type="hinge" pos="0 0 0" axis="1 0 0" limited="true" range="0 3.13" /> -->
+            
+
+            <camera name="A:trackingZ" pos="0 0 3" mode="trackcom" />
+            <camera name="A:trackingY" pos="1.5 1.5 0.35" quat="0.353149 0.297582 0.571552 0.678277" mode="trackcom" />
+            <body name="A:dkitty" childclass="dkitty" pos="0 0 0">
+                <inertial pos="-1.22646e-09 -7.46391e-09 -6.55135e-07" quat="0.5 0.5 -0.5 0.5" mass="0.72" diaginertia="0.0100714 0.0076385 0.00256231" />
+                <geom name="A:head" class="viz_plastic" size="0.012 0.035 0.017" pos="0 0.104 0" type="box" rgba="0 0 1 1" />
+                <geom class="viz_plastic" pos="0 0 0.0155" rgba="0.3 0.3 1 1" mesh="D_kitty_plates_V2" />
+                <geom class="viz_plastic" pos="0 0 -0.0155" rgba="0.3 0.3 1 1" mesh="D_kitty_plates_V2" />
+                <geom class="viz_metal_grey" mesh="screws" />
+                <geom class="viz_plastic" mesh="bulkhead" />
+                <geom class="collision" type="mesh" mesh="bulkhead_low_poly" />
+                <geom class="collision" type="mesh" mesh="bulkhead_low_poly1" />
+                <geom class="collision" type="mesh" mesh="bulkhead_low_poly2" />
+                <geom class="collision" type="mesh" mesh="bulkhead_low_poly3" />
+                <geom class="collision" type="mesh" mesh="bulkhead_low_poly4" />
+                <geom class="collision" type="mesh" mesh="bulkhead_low_poly5" />
+                <geom class="viz_metal_black" pos="0.08 -0.121 0" quat="0.500398 0.5 -0.5 -0.499602" mesh="x430_dkitty_2" />
+                <geom class="viz_metal_black" pos="0.08 0.121 0" quat="0.500398 -0.5 -0.5 0.499602" mesh="x430_dkitty_2" />
+                <geom class="viz_metal_black" pos="-0.08 0.121 0" quat="0.500398 0.5 0.5 0.499602" mesh="x430_dkitty_2" />
+                <geom class="viz_metal_black" pos="-0.08 -0.121 0" quat="0.500398 -0.5 0.5 -0.499602" mesh="x430_dkitty_2" />
+                <geom class="collision" size="0.024 0.018 0.015" pos="0.078 -0.122 0" type="box" />
+                <geom class="collision" size="0.024 0.018 0.015" pos="-0.078 -0.122 0" type="box" />
+                <geom class="collision" size="0.024 0.018 0.015" pos="-0.078 0.122 0" type="box" />
+                <geom class="collision" size="0.024 0.018 0.015" pos="0.078 0.122 0" type="box" />
+                <body name="A:FR10" pos="0.09 0.122 0" quat="1 0 0 0">
+                <!-- <body name="A:FR10" pos="0.09 0.122 0" quat="0.000796327 0 -1 0"> -->
+                    <inertial pos="0 0 0.0758729" quat="1 0 0 0.000408024" mass="0.118" diaginertia="7.07259e-05 7.04568e-05 2.44845e-05" />
+                    <joint name="A:FRJ10" pos="0 0 0" axis="0 1 0" range="-0.5 3.14" />
+                    <!-- <joint name="A:FRJ10" pos="0 0 0" axis="0 1 0" range="-3.419 0.279" /> -->
+                    <geom class="viz_metal_grey" pos="0 0 0.0005" quat="0.707388 0 0 0.706825" mesh="fr12_h103_3" />
+                    <geom class="viz_metal_black" pos="0 0 0.086" quat="0.000796327 0 1 0" mesh="x430_dkitty_2" />
+                    <geom class="viz_metal_black" pos="0 0 0.055" mesh="xh_clamping_small" />
+                    <geom class="collision" size="0.0015 0.013 0.029" pos="0 -0.02 0.026" quat="0.707388 0 0 0.706825" type="box" />
+                    <geom class="collision" size="0.0015 0.013 0.029" pos="0 0.02 0.026" quat="0.707388 0 0 0.706825" type="box" />
+                    <geom class="collision" size="0.019 0.016 0.004" pos="0 0 0.051" quat="0.707388 0 0 0.706825" type="box" />
+                    <geom class="collision" size="0.019 0.013 0.006" pos="0 0 0.061" type="box" />
+                    <geom class="collision" size="0.018 0.015 0.024" pos="0 0 0.084" type="box" />
+                    <body name="A:FR11" pos="0 0 0.0965">
+                        <inertial pos="0 0 0.0758305" quat="0.707107 0 0 0.707107" mass="0.118" diaginertia="7.28461e-05 6.56669e-05 2.44845e-05" />
+                        <joint name="A:FRJ11" pos="0 0 0" axis="1 0 0" range="-2.14 2.14" />
+                        <geom class="viz_metal_grey" mesh="fr12_h103_3" />
+                        <geom class="viz_metal_black" pos="0 0 0.085" quat="0.000796327 0 1 0" mesh="x430_dkitty_2" />
+                        <geom class="viz_metal_black" pos="0 0 0.0545" mesh="xh_clamping_small" />
+                        <geom class="collision" size="0.019 0.016 0.004" pos="0 0 0.051" type="box" />
+                        <geom class="collision" size="0.0015 0.013 0.029" pos="-0.02 0 0.026" type="box" />
+                        <geom class="collision" size="0.0015 0.013 0.029" pos="0.02 0 0.026" type="box" />
+                        <geom class="collision" size="0.018 0.015 0.023" pos="0 0 0.084" type="box" />
+                        <geom class="collision" size="0.019 0.013 0.006" pos="0 0 0.06" type="box" />
+                        <body name="A:FR12" pos="0 0 0.0945">
+                            <inertial pos="0 0 0.0608" quat="0.707107 0 0 0.707107" mass="0.04" diaginertia="3.42958e-05 3.02857e-05 7.8244e-06" />
+                            <joint name="A:FRJ12" pos="0 0 0" axis="1 0 0" range="-1.57 1.57" />
+                            <geom class="viz_metal_grey" pos="0 0 0.001" mesh="fr12_h103_3" />
+                            <geom class="viz_plastic" pos="0 0 0.055" mesh="xh_finger_tip" />
+                            <!-- <geom class="collision" size="0.0015 0.013 0.029" pos="0.02 0 0.026" type="box" />
+                            <geom class="collision" size="0.0015 0.013 0.029" pos="-0.02 0 0.026" type="box" />
+                            <geom class="collision" size="0.019 0.016 0.004" pos="0 0 0.052" type="box" />
+                            <geom class="collision" size="0.025 0.014 0.003" pos="0 0 0.058" type="box" />
+                            <geom class="collision" size="0.0103 0.0187" pos="0 0 0.082" type="capsule" /> -->
+                            <geom size="0.0015 0.013 0.029" pos="0.02 0 0.026" type="box" contype='1' conaffinity='1' margin="0.001" solimp="0.99 0.99 0.01" solref="0.01 1" condim="4" />
+                            <geom size="0.0015 0.013 0.029" pos="-0.02 0 0.026" type="box" contype='1' conaffinity='1' margin="0.001" solimp="0.99 0.99 0.01" solref="0.01 1" condim="4" />
+                            <geom size="0.019 0.016 0.004" pos="0 0 0.052" type="box" contype='1' conaffinity='1' margin="0.001" solimp="0.99 0.99 0.01" solref="0.01 1" condim="4" />
+                            <geom size="0.025 0.014 0.003" pos="0 0 0.058" type="box" contype='1' conaffinity='1' margin="0.001" solimp="0.99 0.99 0.01" solref="0.01 1" condim="4" />
+                            <geom size="0.0103 0.0187" pos="0 0 0.082" type="capsule" contype='1' conaffinity='1' margin="0.001" solimp="0.99 0.99 0.01" solref="0.01 1" condim="4" />                            
+                            <site name="A:FLfoot" pos="0 0 0.101" size="0.0105" group="1" rgba="1 1 0.3 0." />
+                        </body>
+                    </body>
+                </body>
+                <body name="A:FL20" pos="-0.09 0.122 0" quat="0.000796327 0 1 0">
+                    <inertial pos="0 0 0.0758729" quat="1 0 0 0.000408024" mass="0.118" diaginertia="7.07259e-05 7.04568e-05 2.44845e-05" />
+                    <!-- <joint name="A:FLJ20" pos="0 0 0" axis="0 1 0" range="-0.279 3.419" /> -->
+                    <geom class="viz_metal_grey" pos="0 0 0.0005" quat="0.707388 0 0 0.706825" mesh="fr12_h103_3" />
+                    <geom class="viz_metal_black" pos="0 0 0.086" quat="0.000796327 0 1 0" mesh="x430_dkitty_2" />
+                    <geom class="viz_metal_black" pos="0 0 0.055" mesh="xh_clamping_small" />
+                    <geom class="collision" size="0.0015 0.013 0.029" pos="0 -0.02 0.026" quat="0.707388 0 0 0.706825" type="box" />
+                    <geom class="collision" size="0.0015 0.013 0.029" pos="0 0.02 0.026" quat="0.707388 0 0 0.706825" type="box" />
+                    <geom class="collision" size="0.019 0.016 0.004" pos="0 0 0.051" quat="0.707388 0 0 0.706825" type="box" />
+                    <geom class="collision" size="0.019 0.013 0.006" pos="0 0 0.061" type="box" />
+                    <geom class="collision" size="0.018 0.015 0.024" pos="0 0 0.084" type="box" />
+                    <body name="A:FL21" pos="0 0 0.0965">
+                        <inertial pos="0 0 0.0758305" quat="0.707107 0 0 0.707107" mass="0.118" diaginertia="7.28461e-05 6.56669e-05 2.44845e-05" />
+                        <!-- <joint name="A:FLJ21" pos="0 0 0" axis="1 0 0" range="-2.14 2.14" /> -->
+                        <geom class="viz_metal_grey" mesh="fr12_h103_3" />
+                        <geom class="viz_metal_black" pos="0 0 0.085" quat="0.000796327 0 1 0" mesh="x430_dkitty_2" />
+                        <geom class="viz_metal_black" pos="0 0 0.0545" mesh="xh_clamping_small" />
+                        <geom class="collision" size="0.019 0.016 0.004" pos="0 0 0.051" type="box" />
+                        <geom class="collision" size="0.0015 0.013 0.029" pos="-0.02 0 0.026" type="box" />
+                        <geom class="collision" size="0.0015 0.013 0.029" pos="0.02 0 0.026" type="box" />
+                        <geom class="collision" size="0.018 0.015 0.023" pos="0 0 0.084" type="box" />
+                        <geom class="collision" size="0.019 0.013 0.006" pos="0 0 0.06" type="box" />
+                        <body name="A:FL22" pos="0 0 0.0945"  quat="0.707 -0.707 0 0">
+                            <inertial pos="0 0 0.0608" quat="0.707107 0 0 0.707107" mass="0.04" diaginertia="3.42958e-05 3.02857e-05 7.8244e-06" />
+                            <!-- <joint name="A:FLJ22" pos="0 0 0" axis="1 0 0" range="-1.57 1.57" /> -->
+                            <geom class="viz_metal_grey" pos="0 0 0.001" mesh="fr12_h103_3" />
+                            <geom class="viz_plastic" pos="0 0 0.055" mesh="xh_finger_tip" />
+                            <geom class="collision" size="0.0015 0.013 0.029" pos="0.02 0 0.026" type="box" />
+                            <geom class="collision" size="0.0015 0.013 0.029" pos="-0.02 0 0.026" type="box" />
+                            <geom class="collision" size="0.019 0.016 0.004" pos="0 0 0.052" type="box" />
+                            <geom class="collision" size="0.025 0.014 0.003" pos="0 0 0.058" type="box" />
+                            <geom class="collision" size="0.0103 0.0187" pos="0 0 0.082" type="capsule" />
+                            <site name="A:FRfoot" pos="0 0 0.101" size="0.0105" group="1" rgba="0.3 0.3 1 1" />
+                        </body>
+                    </body>
+                </body>
+                <body name="A:BL30" pos="-0.09 -0.122 0" quat="0.000796327 0 1 0">
+                    <inertial pos="0 0 0.0758729" quat="1 0 0 0.000408024" mass="0.118" diaginertia="7.07259e-05 7.04568e-05 2.44845e-05" />
+                    <!-- <joint name="A:BLJ30" pos="0 0 0" axis="0 1 0" range="-0.279 3.419" /> -->
+                    <geom class="viz_metal_grey" pos="0 0 0.0005" quat="0.707388 0 0 0.706825" mesh="fr12_h103_3" />
+                    <geom class="viz_metal_black" pos="0 0 0.086" quat="0.000796327 0 1 0" mesh="x430_dkitty_2" />
+                    <geom class="viz_metal_black" pos="0 0 0.055" mesh="xh_clamping_small" />
+                    <geom class="collision" size="0.0015 0.013 0.029" pos="0 -0.02 0.026" quat="0.707388 0 0 0.706825" type="box" />
+                    <geom class="collision" size="0.0015 0.013 0.029" pos="0 0.02 0.026" quat="0.707388 0 0 0.706825" type="box" />
+                    <geom class="collision" size="0.019 0.016 0.004" pos="0 0 0.051" quat="0.707388 0 0 0.706825" type="box" />
+                    <geom class="collision" size="0.019 0.013 0.006" pos="0 0 0.061" type="box" />
+                    <geom class="collision" size="0.018 0.015 0.024" pos="0 0 0.084" type="box" />
+                    <body name="A:BL31" pos="0 0 0.0965">
+                        <inertial pos="0 0 0.0758305" quat="0.707107 0 0 0.707107" mass="0.118" diaginertia="7.28461e-05 6.56669e-05 2.44845e-05" />
+                        <!-- <joint name="A:BLJ31" pos="0 0 0" axis="1 0 0" range="-2.14 2.14" /> -->
+                        <geom class="viz_metal_grey" mesh="fr12_h103_3" />
+                        <geom class="viz_metal_black" pos="0 0 0.085" quat="0.000796327 0 1 0" mesh="x430_dkitty_2" />
+                        <geom class="viz_metal_black" pos="0 0 0.0545" mesh="xh_clamping_small" />
+                        <geom class="collision" size="0.019 0.016 0.004" pos="0 0 0.051" type="box" />
+                        <geom class="collision" size="0.0015 0.013 0.029" pos="-0.02 0 0.026" type="box" />
+                        <geom class="collision" size="0.0015 0.013 0.029" pos="0.02 0 0.026" type="box" />
+                        <geom class="collision" size="0.018 0.015 0.023" pos="0 0 0.084" type="box" />
+                        <geom class="collision" size="0.019 0.013 0.006" pos="0 0 0.06" type="box" />
+                        <body name="A:BL32" pos="0 0 0.0945"  quat="0.707 -0.707 0 0">
+                            <inertial pos="0 0 0.0608" quat="0.707107 0 0 0.707107" mass="0.04" diaginertia="3.42958e-05 3.02857e-05 7.8244e-06" />
+                            <!-- <joint name="A:BLJ32" pos="0 0 0" axis="1 0 0" range="-1.57 1.57" /> -->
+                            <geom class="viz_metal_grey" pos="0 0 0.001" mesh="fr12_h103_3" />
+                            <geom class="viz_plastic" pos="0 0 0.055" mesh="xh_finger_tip" />
+                            <geom class="collision" size="0.0015 0.013 0.029" pos="0.02 0 0.026" type="box" />
+                            <geom class="collision" size="0.0015 0.013 0.029" pos="-0.02 0 0.026" type="box" />
+                            <geom class="collision" size="0.019 0.016 0.004" pos="0 0 0.052" type="box" />
+                            <geom class="collision" size="0.025 0.014 0.003" pos="0 0 0.058" type="box" />
+                            <geom class="collision" size="0.0103 0.0187" pos="0 0 0.082" type="capsule" />
+                            <site name="A:BLfoot" pos="0 0 0.101" size="0.0105" group="1" rgba="0.3 1 0.3 1" />
+                        </body>
+                    </body>
+                </body>
+                <body name="A:BR40" pos="0.09 -0.122 0" quat="0.000796327 0 -1 0">
+                    <inertial pos="0 0 0.0758729" quat="1 0 0 0.000408024" mass="0.118" diaginertia="7.07259e-05 7.04568e-05 2.44845e-05" />
+                    <!-- <joint name="A:BRJ40" pos="0 0 0" axis="0 1 0" range="-3.419 0.279" /> -->
+                    <geom class="viz_metal_grey" pos="0 0 0.0005" quat="0.707388 0 0 0.706825" mesh="fr12_h103_3" />
+                    <geom class="viz_metal_black" pos="0 0 0.086" quat="0.000796327 0 1 0" mesh="x430_dkitty_2" />
+                    <geom class="viz_metal_black" pos="0 0 0.055" mesh="xh_clamping_small" />
+                    <geom class="collision" size="0.0015 0.013 0.029" pos="0 -0.02 0.026" quat="0.707388 0 0 0.706825" type="box" />
+                    <geom class="collision" size="0.0015 0.013 0.029" pos="0 0.02 0.026" quat="0.707388 0 0 0.706825" type="box" />
+                    <geom class="collision" size="0.019 0.016 0.004" pos="0 0 0.051" quat="0.707388 0 0 0.706825" type="box" />
+                    <geom class="collision" size="0.019 0.013 0.006" pos="0 0 0.061" type="box" />
+                    <geom class="collision" size="0.018 0.015 0.024" pos="0 0 0.084" type="box" />
+                    <body name="A:BR41" pos="0 0 0.0965">
+                        <inertial pos="0 0 0.0758305" quat="0.707107 0 0 0.707107" mass="0.118" diaginertia="7.28461e-05 6.56669e-05 2.44845e-05" />
+                        <!-- <joint name="A:BRJ41" pos="0 0 0" axis="1 0 0" range="-2.14 2.14" /> -->
+                        <geom class="viz_metal_grey" mesh="fr12_h103_3" />
+                        <geom class="viz_metal_black" pos="0 0 0.085" quat="0.000796327 0 1 0" mesh="x430_dkitty_2" />
+                        <geom class="viz_metal_black" pos="0 0 0.0545" mesh="xh_clamping_small" />
+                        <geom class="collision" size="0.019 0.016 0.004" pos="0 0 0.051" type="box" />
+                        <geom class="collision" size="0.0015 0.013 0.029" pos="-0.02 0 0.026" type="box" />
+                        <geom class="collision" size="0.0015 0.013 0.029" pos="0.02 0 0.026" type="box" />
+                        <geom class="collision" size="0.018 0.015 0.023" pos="0 0 0.084" type="box" />
+                        <geom class="collision" size="0.019 0.013 0.006" pos="0 0 0.06" type="box" />
+                        <body name="A:BR42" pos="0 0 0.0945"   quat="0.707 -0.707 0 0">
+                            <inertial pos="0 0 0.0608" quat="0.707107 0 0 0.707107" mass="0.04" diaginertia="3.42958e-05 3.02857e-05 7.8244e-06" />
+                            <!-- <joint name="A:BRJ42" pos="0 0 0" axis="1 0 0" range="-1.57 1.57" /> -->
+                            <geom class="viz_metal_grey" pos="0 0 0.001" mesh="fr12_h103_3" />
+                            <geom class="viz_plastic" pos="0 0 0.055" mesh="xh_finger_tip" />
+                            <geom class="collision" size="0.0015 0.013 0.029" pos="0.02 0 0.026" type="box" />
+                            <geom class="collision" size="0.0015 0.013 0.029" pos="-0.02 0 0.026" type="box" />
+                            <geom class="collision" size="0.019 0.016 0.004" pos="0 0 0.052" type="box" />
+                            <geom class="collision" size="0.025 0.014 0.003" pos="0 0 0.058" type="box" />
+                            <geom class="collision" size="0.0103 0.0187" pos="0 0 0.082" type="capsule" />
+                            <site name="A:BRfoot" pos="0 0 0.101" size="0.0105" group="1" rgba="1 0.3 0.3 1" />
+                        </body>
+                    </body>
+                </body>
+            </body>
+        </body>
+        <body name="button" pos="0.4 0.4 0.35" quat="0.707388 0.706825 0 0">
+            <inertial pos="-5.5045e-06 0.0023925 -0.00086877" quat="0.696349 -0.122872 0.122872 0.696349" mass="0.0017883" diaginertia="1.65003e-07 1.1596e-07 1.00437e-07" />
+            <joint name="button" pos="0 0 0" axis="1 0 0" damping="0.01"  limited="true" range="0.4 1.7" armature="0.001" />
+            <geom type="mesh" rgba="1 1 1 0.5" mesh="button"  contype='1' conaffinity='1' margin="0.001" solimp="0.99 0.99 0.01" solref="0.01 1" condim="4" />
+            <geom class="viz_metal_grey" type="mesh" rgba="1 1 1 0.5" mesh="button" />
+            <site name="button_up" pos="0 0.025 -0.008" size="0.005" rgba="1 1 0.3 1" />
+            <site name="button_down" pos="0 0.005 0.022" size="0.005"  rgba="1 1 0.3 1" />
+        </body>
+    </worldbody>
+
+    <actuator>
+        <!-- <position ctrllimited="true" ctrlrange="0.4 1.7" joint="button" kp="100" name="button" forcelimited="true" forcerange="-20 20"/> -->
+        <!-- <general name="button" joint="button" ctrlrange="0.4 1.7" /> -->
+        <!-- <position ctrllimited="true" ctrlrange="-0.5 3.14" joint="A:FRJ10" kp="100" name="A:FRJ10"/> -->
+        <general name="A:FRJ10" class="dkitty" joint="A:FRJ10" ctrlrange="-0.5 3.14" />
+        <!-- <general name="A:FRJ10" class="dkitty" joint="A:FRJ10" ctrlrange="-3.419 0.279" /> -->
+        <general name="A:FRJ11" class="dkitty" joint="A:FRJ11" ctrlrange="-2.14 2.14" />
+        <general name="A:FRJ12" class="dkitty" joint="A:FRJ12" />
+        <!-- <general name="A:FLJ20" class="dkitty" joint="A:FLJ20" ctrlrange="-0.279 3.419" />
+        <general name="A:FLJ21" class="dkitty" joint="A:FLJ21" ctrlrange="-2.14 2.14" />
+        <general name="A:FLJ22" class="dkitty" joint="A:FLJ22" />
+        <general name="A:BLJ30" class="dkitty" joint="A:BLJ30" ctrlrange="-0.279 3.419" />
+        <general name="A:BLJ31" class="dkitty" joint="A:BLJ31" ctrlrange="-2.14 2.14" />
+        <general name="A:BLJ32" class="dkitty" joint="A:BLJ32" />
+        <general name="A:BRJ40" class="dkitty" joint="A:BRJ40" ctrlrange="-3.419 0.279" />
+        <general name="A:BRJ41" class="dkitty" joint="A:BRJ41" ctrlrange="-2.14 2.14" />
+        <general name="A:BRJ42" class="dkitty" joint="A:BRJ42" /> -->
+    </actuator>
+    <sensor>
+        <jointpos joint="A:FRJ10" name="A:FRJ10_pos_sensor" />
+        <jointpos joint="A:FRJ11" name="A:FRJ11_pos_sensor" />
+        <jointpos joint="A:FRJ12" name="A:FRJ12_pos_sensor" />
+        <!-- <jointpos joint="A:FLJ20" name="A:FLJ20_pos_sensor" />
+        <jointpos joint="A:FLJ21" name="A:FLJ21_pos_sensor" />
+        <jointpos joint="A:FLJ22" name="A:FLJ22_pos_sensor" />
+        <jointpos joint="A:BLJ30" name="A:BLJ30_pos_sensor" />
+        <jointpos joint="A:BLJ31" name="A:BLJ31_pos_sensor" />
+        <jointpos joint="A:BLJ32" name="A:BLJ32_pos_sensor" />
+        <jointpos joint="A:BRJ40" name="A:BRJ40_pos_sensor" />
+        <jointpos joint="A:BRJ41" name="A:BRJ41_pos_sensor" />
+        <jointpos joint="A:BRJ42" name="A:BRJ42_pos_sensor" /> -->
+        <jointvel joint="A:FRJ10" name="A:FRJ10_velocity_sensor" />
+        <jointvel joint="A:FRJ11" name="A:FRJ11_velocity_sensor" />
+        <jointvel joint="A:FRJ12" name="A:FRJ12_velocity_sensor" />
+        <!-- <jointvel joint="A:FLJ20" name="A:FLJ20_velocity_sensor" />
+        <jointvel joint="A:FLJ21" name="A:FLJ21_velocity_sensor" />
+        <jointvel joint="A:FLJ22" name="A:FLJ22_velocity_sensor" />
+        <jointvel joint="A:BLJ30" name="A:BLJ30_velocity_sensor" />
+        <jointvel joint="A:BLJ31" name="A:BLJ31_velocity_sensor" />
+        <jointvel joint="A:BLJ32" name="A:BLJ32_velocity_sensor" />
+        <jointvel joint="A:BRJ40" name="A:BRJ40_velocity_sensor" />
+        <jointvel joint="A:BRJ41" name="A:BRJ41_velocity_sensor" />
+        <jointvel joint="A:BRJ42" name="A:BRJ42_velocity_sensor" /> -->
+    </sensor>
+
+    <contact>
+        <exclude body1="button" body2="wall"></exclude>
+    </contact>
+
+</mujoco>

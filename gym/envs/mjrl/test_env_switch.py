@@ -72,7 +72,7 @@ env = gym.make("mjrl_dkitty_switch-v0")
 # time.sleep(10)
 # plt.show()
 # action = np.array([0.1, 0.0, 0.0, -0.1])
-for j in range(10):
+for j in range(100):
   env.reset()
   # env.render('human')
   # action[-1] += 0.1
