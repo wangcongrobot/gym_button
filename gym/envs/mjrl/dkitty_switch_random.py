@@ -108,7 +108,7 @@ class SwitchRandomEnv(mujoco_env.MujocoEnv, utils.EzPickle):
         try:
             # random robot base pos
             self.data.qpos[0] = np.random.uniform(-0.1, 0.1)
-            self.data.qpos[1] = np.random.uniform(-1.0, 1.0)            
+            self.data.qpos[1] = np.random.uniform(-0.5, 0.5)            
             # joint of the leg
             self.data.qpos[2] = np.random.uniform(-1.0, 1.0)
             self.data.qpos[3] = np.random.uniform(-1.0, 1.0)
