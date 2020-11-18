@@ -107,8 +107,6 @@
             <geom class="table_plastic" size="0.4 0.01 0.5" pos="0.2 0.41 0" type="box" material="MatPlane" />
         </body>
 
-        <!-- add button base -->
-        <geom class="viz_metal_grey" pos="0.4 0.4 0.35" quat="0.707388 0.706825 0 0" type="mesh" rgba="1 0 1 1" mesh="base_link" />
 
         <site name="xaxis" pos="0.5 0 0" quat="0.707388 0 0.706825 0" size="0.005 0.5" group="3" type="capsule" rgba="1 0 0 0.25" />
         <site name="yaxis" pos="0 0.5 0" quat="0.707388 0.706825 0 0" size="0.005 0.5" group="3" type="capsule" rgba="0 1 0 0.25" />
@@ -308,20 +306,28 @@
                 </body>
             </body>
         </body>
-        <body name="button" pos="0.4 0.4 0.35" quat="0.707388 0.706825 0 0">
-            <inertial pos="-5.5045e-06 0.0023925 -0.00086877" quat="0.696349 -0.122872 0.122872 0.696349" mass="0.0017883" diaginertia="1.65003e-07 1.1596e-07 1.00437e-07" />
-            <joint name="button" pos="0 0 0" axis="1 0 0" damping="0.01"  limited="true" range="0.4 1.7" armature="0.001" />
-            <geom type="mesh" rgba="1 1 1 0.5" mesh="button"  contype='1' conaffinity='1' margin="0.001" solimp="0.99 0.99 0.01" solref="0.01 1" condim="4" />
-            <geom class="viz_metal_grey" type="mesh" rgba="1 1 1 0.5" mesh="button" />
-            <site name="button_up" pos="0 0.025 -0.008" size="0.005" rgba="1 1 0.3 1" />
-            <site name="button_down" pos="0 0.005 0.022" size="0.005"  rgba="1 1 0.3 1" />
+
+        <body name="button_whole" >
+            <!-- add button base -->
+            <geom class="viz_metal_grey" pos="0.4 0.4 0.35" quat="0.707388 0.706825 0 0" type="mesh" rgba="1 0 1 1" mesh="base_link" />
+            <joint name="button_x_slide_joint" type="slide" pos="0 0 0" axis="1 0 0" limited="true" range="-0.1 0.1" />
+            <body name="button" pos="0.4 0.4 0.35" quat="0.707388 0.706825 0 0">
+                <inertial pos="-5.5045e-06 0.0023925 -0.00086877" quat="0.696349 -0.122872 0.122872 0.696349" mass="0.0017883" diaginertia="1.65003e-07 1.1596e-07 1.00437e-07" />
+                <joint name="button" pos="0 0 0" axis="1 0 0" damping="0.01"  limited="true" range="0.4 1.7" armature="0.001" />
+                <geom type="mesh" rgba="1 1 1 0.5" mesh="button"  contype='1' conaffinity='1' margin="0.001" solimp="0.99 0.99 0.01" solref="0.01 1" condim="4" />
+                <geom class="viz_metal_grey" type="mesh" rgba="1 1 1 0.5" mesh="button" />
+                <site name="button_up" pos="0 0.025 -0.008" size="0.005" rgba="1 1 0.3 1" />
+                <site name="button_down" pos="0 0.005 0.022" size="0.005"  rgba="1 1 0.3 1" />
+            </body>
         </body>
+
     </worldbody>
 
     <actuator>
         <!-- <position ctrllimited="true" ctrlrange="0.4 1.7" joint="button" kp="100" name="button" forcelimited="true" forcerange="-20 20"/> -->
         <!-- <general name="button" joint="button" ctrlrange="0.4 1.7" /> -->
         <!-- <position ctrllimited="true" ctrlrange="-0.5 3.14" joint="A:FRJ10" kp="100" name="A:FRJ10"/> -->
+        <!-- <motor ctrllimited="true" ctrlrange="-0.1 0.1" gear="10.0" joint="button_x_slide_joint" /> -->
         <general name="A:FRJ10" class="dkitty" joint="A:FRJ10" ctrlrange="-0.5 3.14" />
         <!-- <general name="A:FRJ10" class="dkitty" joint="A:FRJ10" ctrlrange="-3.419 0.279" /> -->
         <general name="A:FRJ11" class="dkitty" joint="A:FRJ11" ctrlrange="-2.14 2.14" />

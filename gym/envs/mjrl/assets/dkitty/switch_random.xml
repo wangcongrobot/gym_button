@@ -308,15 +308,25 @@
             </body>
         </body>
         
-        <!-- add button base -->
-        <geom class="viz_metal_grey" pos="0.43 0.38 0.3" quat="0.707 0 0 0.706825" type="mesh" rgba="1 0 1 0.5" mesh="base_link" />
-        <body name="button" pos="0.40 0.4 0.33">
-            <inertial pos="-5.5045e-06 0.0023925 -0.00086877" quat="0.696349 -0.122872 0.122872 0.696349" mass="0.0017883" diaginertia="1.65003e-07 1.1596e-07 1.00437e-07" />
-            <joint name="button" pos="0 0 0" axis="1 0 0" damping="0.01"  limited="true" range="1.0 2.0" armature="0.001" />
-            <geom type="mesh" pos="-0.01 -0.01 -0.075" rgba="1 1 1 1." mesh="button"  contype='1' conaffinity='1' margin="0.001" solimp="0.99 0.99 0.01" solref="0.01 1" condim="4" />
-            <geom class="viz_metal_grey" pos="-0.01 -0.01 -0.075" type="mesh" rgba="1 1 1 1" mesh="button" />
-            <site name="button_tip" pos="0 0.0 0.065" size="0.005" rgba="1 1 0.3 1" />
+        <body name="button_whole" >
+            <!-- add button base -->
+            <geom class="viz_metal_grey" pos="0.43 0.38 0.3" quat="0.707 0 0 0.706825" type="mesh" rgba="1 0 1 0.5" mesh="base_link" />
+            <!-- <joint name="wrist_x_slide_joint" type="slide" pos="0 0 0" axis="1 0 0" limited="true" range="-3.0 3.0" /> -->
+            <joint name="button_x_slide_joint" type="slide" pos="0 0 0" axis="1 0 0" limited="true" range="-0.1 0.1" />
+            <!-- <joint name="wrist_z_slide_joint" type="slide" pos="0 0 0" axis="0 0 1" limited="true" range="-3.0 3.0" /> -->
+            <!-- <joint name="wrist_z_hinge_joint" type="hinge" pos="0 0 0" axis="0 0 1" limited="true" range="-1.0 1.0" /> -->
+            <!-- <joint name="wrist_y_hinge_joint" type="hinge" pos="0 0 0" axis="0 1 0" limited="true" range="-1.57 1.57" /> -->
+            <!-- <joint name="wrist_x_hinge_joint" type="hinge" pos="0 0 0" axis="1 0 0" limited="true" range="0 3.13" /> -->
+                        
+            <body name="button" pos="0.40 0.4 0.33">
+                <inertial pos="-5.5045e-06 0.0023925 -0.00086877" quat="0.696349 -0.122872 0.122872 0.696349" mass="0.0017883" diaginertia="1.65003e-07 1.1596e-07 1.00437e-07" />
+                <joint name="button" pos="0 0 0" axis="1 0 0" damping="0.01"  limited="true" range="1.0 2.0" armature="0.001" />
+                <geom type="mesh" pos="-0.01 -0.01 -0.075" rgba="1 1 1 1." mesh="button"  contype='1' conaffinity='1' margin="0.001" solimp="0.99 0.99 0.01" solref="0.01 1" condim="4" />
+                <geom class="viz_metal_grey" pos="-0.01 -0.01 -0.075" type="mesh" rgba="1 1 1 1" mesh="button" />
+                <site name="button_tip" pos="0 0.0 0.065" size="0.005" rgba="1 1 0.3 1" />
+            </body>            
         </body>
+
 
     </worldbody>
     <actuator>
@@ -329,6 +339,7 @@
         <!-- <position ctrllimited="true" ctrlrange="-1.0 1.0" kp="500.0" joint="wrist_z_hinge_joint" /> -->
         <!-- <motor ctrllimited="true" ctrlrange="-1.0 1.0" gear="10.0" joint="wrist_y_hinge_joint" /> -->
         <!-- <motor ctrllimited="true" ctrlrange="-1.0 1.0" gear="10.0" joint="wrist_x_hinge_joint" /> -->
+        <!-- <motor ctrllimited="true" ctrlrange="-0.1 0.1" gear="10.0" joint="button_x_slide_joint" /> -->
 
         <general name="A:FRJ10" class="dkitty" joint="A:FRJ10" ctrlrange="-0.5 3.14" />
         <!-- <general name="A:FRJ10" class="dkitty" joint="A:FRJ10" ctrlrange="-3.419 0.279" /> -->
