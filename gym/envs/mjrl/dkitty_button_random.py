@@ -112,14 +112,14 @@ class ButtonRandomEnv(mujoco_env.MujocoEnv, utils.EzPickle):
         
         try:
             # random robot base pos
-            self.data.qpos[0] = np.random.uniform(-0.1, 0.1)
-            self.data.qpos[1] = np.random.uniform(-0.5, 0.5)            
+            self.data.qpos[0] = np.random.uniform(-0.05, 0.05)
+            self.data.qpos[1] = np.random.uniform(-0.2, 0.2)            
             # joint of the leg
             self.data.qpos[2] = np.random.uniform(-1.0, 1.0)
             self.data.qpos[3] = np.random.uniform(-1.0, 1.0)
             self.data.qpos[4] = np.random.uniform(-1.0, 1.0)
             # button position
-            self.data.qpos[5] = np.random.uniform(-0.1, 0.1)
+            self.data.qpos[5] = np.random.uniform(-0.05, 0.05)
             # choose button initial state randomly
             self.data.qpos[-1] = random.choice([0.4,1.7])
             if self.data.qpos[-1] == 0.4: # on
